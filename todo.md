@@ -9,3 +9,6 @@
 - [x] Review the current services-section reveals and establish a more architectural sequencing approach.
 - [x] Implement staged scroll-reveal motion, row-line drawing, and refined hover depth.
 - [x] Verify the updated reveal behaviour and save the completed refinement.
+- [x] Inspect the published image URLs and identify why architectural assets do not load.
+- [x] Replace unreliable asset references with delivery paths that work in static hosting.
+- [x] Confirm all prominent images load in the published experience and save the fix.

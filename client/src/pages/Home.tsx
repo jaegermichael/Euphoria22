@@ -18,10 +18,10 @@ import {
 import { motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
 
-const heroImage = "/manus-storage/technical-aluminium-hero_a2df2f4c.jpg";
-const workshopImage = "/manus-storage/technical-aluminium-workshop_8e746fc2.jpg";
-const interiorImage = "/manus-storage/technical-aluminium-interior_7911d8f9.jpg";
-const logoImage = "/manus-storage/technical-aluminium-logo_32235d0d.png";
+const heroImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/rXbYfGAYmkUeJKcF.jpg";
+const workshopImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/mvlKDcSIiPSiLqqb.jpg";
+const interiorImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/umVeqDPQhKymoars.jpg";
+const logoImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/BlRLATmoFLRpytPT.png";
 
 const planningData = [
   { date: "2026-01-05", rhythm: 18 },
