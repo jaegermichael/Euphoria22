@@ -9,6 +9,7 @@ import {
   ArrowUpRight,
   ChevronDown,
   Menu,
+  MessageCircle,
   MoveUpRight,
   Phone,
   Ruler,
@@ -472,6 +473,15 @@ export default function Home() {
         <p>Architectural aluminium fabrication & installation.</p>
         <a href="tel:+263776826511">+263 77 682 6511</a>
       </footer>
+
+      <a
+        className="whatsapp-float"
+        href="https://wa.me/263776826511"
+        aria-label="Message Technical Aluminium on WhatsApp at +263 77 682 6511"
+      >
+        <MessageCircle size={21} aria-hidden="true" />
+        <span>WhatsApp</span>
+      </a>
     </div>
   );
 }

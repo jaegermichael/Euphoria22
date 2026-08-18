@@ -18,3 +18,6 @@
 - [x] Review the final contact composition and choose the most suitable material-led image treatment.
 - [x] Replace the decorative frame with an architectural image and update the responsive layout.
 - [x] Verify the revised contact section and save the completed refinement.
+- [x] Review the existing contact controls and select a clear floating WhatsApp placement.
+- [x] Add a persistent WhatsApp button with the provided phone number and responsive accessible styling.
+- [x] Verify the floating WhatsApp action across desktop and mobile, then save the update.
