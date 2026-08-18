@@ -139,7 +139,7 @@ button { font: inherit; }
 .text-link:hover::after { transform: scaleX(1); }
 .text-link--light { color: var(--frost); }
 .hero__aperture { align-self: stretch; min-height: 500px; overflow: hidden; position: relative; }
-.hero__aperture img { height: 100%; object-fit: cover; object-position: 60% center; position: absolute; width: 100%; }
+.hero__aperture img { height: 100%; object-fit: cover; object-position: 60% center; position: absolute; transform-origin: center center; width: 100%; }
 .hero__aperture-gradient { background: linear-gradient(90deg, rgba(18, 20, 22, 0.34), transparent 30%), linear-gradient(0deg, rgba(18, 20, 22, 0.53), transparent 36%); inset: 0; position: absolute; }
 .hero__dimension { color: rgba(242, 241, 236, 0.75); left: 30px; position: absolute; top: 32px; writing-mode: vertical-rl; }
 .hero__corner { border-color: var(--signal); border-style: solid; height: 40px; position: absolute; width: 40px; }
@@ -190,10 +190,15 @@ button { font: inherit; }
 .process-band__sequence b { color: var(--signal-light); font-weight: 500; margin-right: 10px; }
 .process-band__sequence + .text-link { margin-top: 31px; }
 .process-band__image-wrap { min-height: 520px; overflow: hidden; position: relative; }
-.process-band__image { height: 100%; object-fit: cover; position: absolute; width: 100%; }
-.process-band__frame { border: 1px solid rgba(242, 241, 236, 0.46); inset: 27px; position: absolute; z-index: 2; }
-.process-band__tag { align-items: center; background: var(--frost); bottom: 27px; color: var(--graphite); display: flex; gap: 9px; padding: 13px 16px; position: absolute; right: 27px; z-index: 3; }
+.process-band__image { height: 100%; object-fit: cover; position: absolute; transition: transform 650ms cubic-bezier(0.23, 1, 0.32, 1); width: 100%; }
+.process-band__frame { border: 1px solid rgba(242, 241, 236, 0.46); inset: 27px; position: absolute; transition: inset 420ms cubic-bezier(0.23, 1, 0.32, 1); z-index: 2; }
+.process-band__tag { align-items: center; background: var(--frost); bottom: 27px; color: var(--graphite); display: flex; gap: 9px; padding: 13px 16px; position: absolute; right: 27px; transition: transform 360ms cubic-bezier(0.23, 1, 0.32, 1); z-index: 3; }
 .process-band__tag svg { color: var(--blue-steel); }
+@media (hover: hover) and (pointer: fine) {
+  .process-band__image-wrap:hover .process-band__image { transform: scale(1.045); }
+  .process-band__image-wrap:hover .process-band__frame { inset: 19px; }
+  .process-band__image-wrap:hover .process-band__tag { transform: translate(-6px, -6px); }
+}
 
 .gallery { background: #dedfdb; padding: clamp(86px, 10vw, 150px) 7.8vw; position: relative; }
 .gallery::before { border-right: 1px solid rgba(20, 93, 126, 0.38); border-top: 1px solid rgba(20, 93, 126, 0.38); content: ""; height: 55px; position: absolute; right: 7.8vw; top: 39px; width: 95px; }
@@ -203,13 +208,16 @@ button { font: inherit; }
 .gallery__composition { align-items: end; display: grid; gap: clamp(38px, 8vw, 130px); grid-template-columns: minmax(0, 0.76fr) minmax(260px, 0.34fr); margin-top: clamp(50px, 7vw, 100px); }
 .gallery__primary { margin: 0; position: relative; }
 .gallery__primary::before { border-left: 2px solid var(--signal); border-top: 2px solid var(--signal); content: ""; height: 52px; left: -16px; position: absolute; top: -16px; width: 52px; }
-.gallery__primary img { display: block; height: min(640px, 55vw); object-fit: cover; object-position: 50% 48%; width: 100%; }
+.gallery__primary img { display: block; height: min(640px, 55vw); object-fit: cover; object-position: 50% 48%; transition: transform 700ms cubic-bezier(0.23, 1, 0.32, 1); width: 100%; }
 .gallery__profile-note { background: var(--graphite); bottom: 42px; color: var(--frost); font-family: "IBM Plex Mono", monospace; font-size: 9px; left: 0; letter-spacing: 0.09em; padding: 10px 13px; position: absolute; text-transform: uppercase; }
 .gallery figcaption { color: #5d6365; display: flex; justify-content: space-between; padding-top: 15px; }
 .gallery__annotation { padding-bottom: 20px; }
 .gallery__annotation-mark { background: var(--blue-steel); display: block; height: 8px; margin-bottom: 24px; width: 8px; }
 .gallery__annotation p { font-family: "Space Grotesk", sans-serif; font-size: clamp(1.35rem, 2vw, 2.05rem); letter-spacing: -0.055em; line-height: 1.03; margin: 0; }
 .gallery__annotation .text-link { margin-top: 31px; }
+@media (hover: hover) and (pointer: fine) {
+  .gallery__primary:hover img { transform: scale(1.035); }
+}
 
 .planning { background: var(--frost); display: grid; gap: clamp(50px, 9vw, 150px); grid-template-columns: minmax(290px, 0.72fr) minmax(450px, 1.28fr); padding: clamp(82px, 10vw, 144px) 7.8vw; position: relative; }
 .planning::before { border-left: 1px solid var(--alloy); border-top: 1px solid var(--alloy); content: ""; height: 72px; left: 4.6vw; position: absolute; top: 31px; width: 72px; }
@@ -240,8 +248,11 @@ button { font: inherit; }
 .contact__image { bottom: clamp(42px, 5vw, 80px); margin: 0; overflow: hidden; position: absolute; right: 7.8vw; top: clamp(80px, 7vw, 116px); transform: skewY(-4deg); width: min(31vw, 380px); z-index: 1; }
 .contact__image::before { border: 1px solid rgba(243, 184, 23, 0.88); content: ""; inset: 14px; pointer-events: none; position: absolute; z-index: 2; }
 .contact__image::after { background: linear-gradient(180deg, rgba(16, 18, 19, 0) 48%, rgba(16, 18, 19, 0.75)); content: ""; inset: 0; pointer-events: none; position: absolute; }
-.contact__image img { display: block; filter: saturate(0.78) contrast(1.1); height: 100%; min-height: 460px; object-fit: cover; object-position: 46% center; transform: skewY(4deg) scale(1.1); width: 100%; }
+.contact__image img { display: block; filter: saturate(0.78) contrast(1.1); height: 100%; min-height: 460px; object-fit: cover; object-position: 46% center; transform: skewY(4deg) scale(1.1); transition: filter 460ms cubic-bezier(0.23, 1, 0.32, 1), transform 700ms cubic-bezier(0.23, 1, 0.32, 1); width: 100%; }
 .contact__image figcaption { bottom: 28px; color: var(--frost); display: flex; font-family: "IBM Plex Mono", monospace; font-size: 9px; justify-content: space-between; left: 27px; letter-spacing: 0.09em; position: absolute; right: 27px; text-transform: uppercase; z-index: 3; }
+@media (hover: hover) and (pointer: fine) {
+  .contact__image:hover img { filter: saturate(0.92) contrast(1.12); transform: skewY(4deg) scale(1.15); }
+}
 
 .site-footer { align-items: center; background: var(--graphite); color: rgba(242, 241, 236, 0.7); display: grid; gap: 24px; grid-template-columns: 1fr auto 1fr; padding: 30px 4.6vw; }
 .brand-lockup--footer { color: var(--frost); }

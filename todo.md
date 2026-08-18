@@ -21,3 +21,6 @@
 - [x] Review the existing contact controls and select a clear floating WhatsApp placement.
 - [x] Add a persistent WhatsApp button with the provided phone number and responsive accessible styling.
 - [x] Verify the floating WhatsApp action across desktop and mobile, then save the update.
+- [x] Audit the current reveal, image, and interaction motion for the strongest upgrade opportunities.
+- [x] Add restrained architectural animation to imagery, section transitions, and primary interactions.
+- [x] Verify desktop and mobile motion behaviour, including reduced-motion support, then save the refinement.

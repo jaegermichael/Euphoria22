@@ -16,7 +16,7 @@ import {
   ShieldCheck,
   X,
 } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useEffect, useState } from "react";
 
 const heroImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/rXbYfGAYmkUeJKcF.jpg";
@@ -104,6 +104,22 @@ const serviceSignalReveal = {
   },
 };
 
+const processSequenceReveal = {
+  hidden: {},
+  visible: {
+    transition: { delayChildren: 0.28, staggerChildren: 0.13 },
+  },
+};
+
+const processStepReveal = {
+  hidden: { opacity: 0, x: -14 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: easeOut },
+  },
+};
+
 function BrandMark({ className = "" }: { className?: string }) {
   return (
     <img
@@ -127,6 +143,9 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const heroImageDrift = useTransform(scrollYProgress, [0, 0.24], [0, 58]);
+  const heroImageScale = useTransform(scrollYProgress, [0, 0.24], [1, 1.055]);
 
   useEffect(() => {
     const updateScrollState = () => setHasScrolled(window.scrollY > 24);
@@ -257,9 +276,10 @@ export default function Home() {
             initial={{ clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 1.2, delay: 0.08, ease: [0.77, 0, 0.175, 1] as [number, number, number, number] }}
           >
-            <img
+            <motion.img
               alt="Contemporary facade with black anodised aluminium doors and windows"
               src={heroImage}
+              style={shouldReduceMotion ? undefined : { scale: heroImageScale, y: heroImageDrift }}
             />
             <div className="hero__aperture-gradient" />
             <div className="hero__dimension hero__dimension--vertical">2400 mm / custom opening</div>
@@ -335,16 +355,27 @@ export default function Home() {
             <p>
               Every project begins with the dimensions, movement and finish the opening needs. The work follows from there, through fabrication to installation.
             </p>
-            <div className="process-band__sequence" aria-label="Technical Aluminium process">
-              <span><b>01</b> Understand the opening</span>
-              <span><b>02</b> Fabricate the system</span>
-              <span><b>03</b> Install with care</span>
-            </div>
+            <motion.div
+              aria-label="Technical Aluminium process"
+              className="process-band__sequence"
+              initial={shouldReduceMotion ? false : "hidden"}
+              variants={processSequenceReveal}
+              viewport={{ once: true, amount: 0.45 }}
+              whileInView={shouldReduceMotion ? undefined : "visible"}
+            >
+              <motion.span variants={processStepReveal}><b>01</b> Understand the opening</motion.span>
+              <motion.span variants={processStepReveal}><b>02</b> Fabricate the system</motion.span>
+              <motion.span variants={processStepReveal}><b>03</b> Install with care</motion.span>
+            </motion.div>
             <a className="text-link text-link--light" href="tel:+263776826511">
               Discuss your project <ArrowUpRight size={17} />
             </a>
           </motion.div>
-          <motion.div {...reveal} className="process-band__image-wrap">
+          <motion.div
+            {...reveal}
+            className="process-band__image-wrap"
+            whileHover={shouldReduceMotion ? undefined : { scale: 1.012 }}
+          >
             <div className="process-band__frame" aria-hidden="true" />
             <img
               alt="Careful alignment of an aluminium frame during fabrication"
@@ -373,6 +404,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 34 }}
               transition={{ duration: 0.76, ease: easeOut }}
               viewport={{ once: true, amount: 0.2 }}
+              whileHover={shouldReduceMotion ? undefined : { y: -5 }}
               whileInView={{ opacity: 1, y: 0 }}
             >
               <img alt="Interior with tall aluminium-framed pivot door and glazing" src={interiorImage} />
@@ -458,7 +490,11 @@ export default function Home() {
               </a>
             </div>
           </motion.div>
-          <motion.figure {...reveal} className="contact__image">
+          <motion.figure
+            {...reveal}
+            className="contact__image"
+            whileHover={shouldReduceMotion ? undefined : { y: -5 }}
+          >
             <img src={contactImage} alt="Black aluminium-framed doorway" />
             <figcaption><span>Framed entry</span><span>01.06</span></figcaption>
           </motion.figure>
