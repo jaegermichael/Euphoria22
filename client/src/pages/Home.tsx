@@ -21,6 +21,7 @@ import { useEffect, useState } from "react";
 const heroImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/rXbYfGAYmkUeJKcF.jpg";
 const workshopImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/mvlKDcSIiPSiLqqb.jpg";
 const interiorImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/umVeqDPQhKymoars.jpg";
+const contactImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/htzAFaZiKowJNNSH.jpg";
 const logoImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/BlRLATmoFLRpytPT.png";
 
 const planningData = [
@@ -456,7 +457,10 @@ export default function Home() {
               </a>
             </div>
           </motion.div>
-          <div className="contact__frame" aria-hidden="true" />
+          <motion.figure {...reveal} className="contact__image">
+            <img src={contactImage} alt="Black aluminium-framed doorway" />
+            <figcaption><span>Framed entry</span><span>01.06</span></figcaption>
+          </motion.figure>
         </section>
       </main>
 

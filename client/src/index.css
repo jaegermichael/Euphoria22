@@ -229,7 +229,7 @@ button { font: inherit; }
 
 .contact { background: var(--graphite); color: var(--frost); min-height: 650px; overflow: hidden; padding: clamp(82px, 10vw, 140px) 7.8vw; position: relative; }
 .contact::before { border-bottom: 1px solid rgba(20, 93, 126, 0.78); border-left: 1px solid rgba(20, 93, 126, 0.78); content: ""; height: 100px; left: 4.6vw; position: absolute; top: 34px; width: 140px; }
-.contact::after { background-image: linear-gradient(rgba(20, 93, 126, 0.32) 1px, transparent 1px), linear-gradient(90deg, rgba(20, 93, 126, 0.32) 1px, transparent 1px); background-size: 46px 46px; content: ""; inset: 0; mask-image: linear-gradient(90deg, transparent 15%, #000 75%); opacity: 0.72; pointer-events: none; position: absolute; }
+.contact::after { background-image: linear-gradient(rgba(20, 93, 126, 0.26) 1px, transparent 1px), linear-gradient(90deg, rgba(20, 93, 126, 0.26) 1px, transparent 1px); background-size: 46px 46px; content: ""; inset: 0 38% 0 28%; mask-image: linear-gradient(90deg, transparent, #000 35%, transparent); opacity: 0.66; pointer-events: none; position: absolute; }
 .contact__inner { max-width: 780px; position: relative; z-index: 2; }
 .contact__mark-wrap { border: 1px solid rgba(242, 241, 236, 0.42); display: inline-flex; margin-bottom: 45px; padding: 12px; }
 .contact__mark-wrap .brand-mark { height: 50px; width: 50px; }
@@ -237,7 +237,11 @@ button { font: inherit; }
 .contact h2 { margin-top: 23px; }
 .contact h2 span { color: var(--signal-light); }
 .contact p { color: rgba(242, 241, 236, 0.78); font-size: 16px; line-height: 1.6; margin: 29px 0 0; max-width: 510px; }
-.contact__frame { border: 1px solid rgba(20, 93, 126, 0.86); bottom: 6vw; height: min(45vw, 480px); position: absolute; right: 9vw; top: 6vw; transform: skewY(-8deg); width: min(33vw, 360px); }
+.contact__image { bottom: clamp(42px, 5vw, 80px); margin: 0; overflow: hidden; position: absolute; right: 7.8vw; top: clamp(80px, 7vw, 116px); transform: skewY(-4deg); width: min(31vw, 380px); z-index: 1; }
+.contact__image::before { border: 1px solid rgba(243, 184, 23, 0.88); content: ""; inset: 14px; pointer-events: none; position: absolute; z-index: 2; }
+.contact__image::after { background: linear-gradient(180deg, rgba(16, 18, 19, 0) 48%, rgba(16, 18, 19, 0.75)); content: ""; inset: 0; pointer-events: none; position: absolute; }
+.contact__image img { display: block; filter: saturate(0.78) contrast(1.1); height: 100%; min-height: 460px; object-fit: cover; object-position: 46% center; transform: skewY(4deg) scale(1.1); width: 100%; }
+.contact__image figcaption { bottom: 28px; color: var(--frost); display: flex; font-family: "IBM Plex Mono", monospace; font-size: 9px; justify-content: space-between; left: 27px; letter-spacing: 0.09em; position: absolute; right: 27px; text-transform: uppercase; z-index: 3; }
 
 .site-footer { align-items: center; background: var(--graphite); color: rgba(242, 241, 236, 0.7); display: grid; gap: 24px; grid-template-columns: 1fr auto 1fr; padding: 30px 4.6vw; }
 .brand-lockup--footer { color: var(--frost); }
@@ -261,7 +265,7 @@ button { font: inherit; }
   .process-band { grid-template-columns: 1fr; }
   .process-band__image-wrap { min-height: 490px; }
   .gallery__composition { grid-template-columns: minmax(0, 0.8fr) minmax(200px, 0.38fr); }
-  .contact__frame { right: -10vw; }
+  .contact__image { right: 4.6vw; width: min(34vw, 350px); }
 }
 
 @media (max-width: 640px) {
@@ -296,8 +300,10 @@ button { font: inherit; }
   .gallery__annotation { padding-bottom: 0; }
   .planning { gap: 47px; }
   .planning__chart-shell { margin-left: -2vw; margin-right: -2vw; }
-  .contact { min-height: 620px; }
-  .contact__frame { bottom: -16vw; height: 380px; right: -34vw; top: auto; width: 300px; }
+  .contact { display: flex; flex-direction: column; gap: 54px; min-height: 0; padding-bottom: 0; }
+  .contact__image { align-self: stretch; bottom: auto; margin-left: -7vw; margin-right: -7vw; position: relative; right: auto; top: auto; transform: none; width: auto; }
+  .contact__image img { height: min(128vw, 600px); min-height: 0; object-position: center 46%; transform: none; }
+  .contact__image figcaption { bottom: 22px; left: 22px; right: 22px; }
   .site-footer { align-items: start; grid-template-columns: 1fr; padding: 32px 7vw; }
   .site-footer p { text-align: left; }
   .site-footer > a:last-child { justify-self: start; }
