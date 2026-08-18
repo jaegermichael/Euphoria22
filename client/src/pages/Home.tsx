@@ -16,7 +16,7 @@ import {
   X,
 } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const heroImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/rXbYfGAYmkUeJKcF.jpg";
 const workshopImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/mvlKDcSIiPSiLqqb.jpg";
@@ -123,11 +123,19 @@ function SectionLabel({ children }: { children: string }) {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const updateScrollState = () => setHasScrolled(window.scrollY > 24);
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrollState);
+  }, []);
 
   return (
     <div className="site-shell">
-      <header className="site-header">
+      <header className={`site-header${hasScrolled ? " site-header--scrolled" : ""}`}>
         <a className="brand-lockup" href="#top" aria-label="Technical Aluminium home">
           <BrandMark />
           <span>

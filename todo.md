@@ -12,3 +12,6 @@
 - [x] Inspect the published image URLs and identify why architectural assets do not load.
 - [x] Replace unreliable asset references with delivery paths that work in static hosting.
 - [x] Confirm all prominent images load in the published experience and save the fix.
+- [x] Review the current header and determine the appropriate floating navigation behaviour.
+- [x] Implement the floating shell, scroll-responsive treatment, and responsive navigation layout.
+- [x] Verify the floating navigation across breakpoints and save the refinement.
