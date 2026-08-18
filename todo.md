@@ -1,0 +1,5 @@
+- [x] Audit current sections against the selected Anodised Standard direction and design-taste guidance.
+- [x] Strengthen the hero, section composition, and typographic hierarchy with more distinctive architectural editorial moments.
+- [x] Add richer material-detail treatments and interaction states without losing clarity or accessibility.
+- [x] Verify the refined desktop and mobile layouts.
+- [ ] Save a delivery checkpoint for the taste-led refinement.

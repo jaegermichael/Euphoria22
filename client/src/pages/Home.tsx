@@ -158,8 +158,8 @@ export default function Home() {
               className="hero__eyebrow"
               initial={{ opacity: 0, y: 16 }}
               transition={{ duration: 0.58, delay: 0.1, ease: easeOut }}
-            >
-              Fabrication & installation / Zimbabwe
+              >
+              Fabrication notes / Zimbabwe
             </motion.p>
             <motion.h1
               animate={{ opacity: 1, y: 0 }}
@@ -167,8 +167,8 @@ export default function Home() {
               initial={{ opacity: 0, y: 42 }}
               transition={{ duration: 0.78, delay: 0.16, ease: easeOut }}
             >
-              Open the building
-              <span>to better light.</span>
+              Light enters
+              <span>by design.</span>
             </motion.h1>
             <motion.p
               animate={{ opacity: 1, y: 0 }}
@@ -191,6 +191,16 @@ export default function Home() {
               <a className="text-link" href="#work">
                 See the work <ArrowDownRight size={17} />
               </a>
+            </motion.div>
+            <motion.div
+              animate={{ opacity: 1, y: 0 }}
+              className="hero__material-index"
+              initial={{ opacity: 0, y: 14 }}
+              transition={{ duration: 0.54, delay: 0.5, ease: easeOut }}
+            >
+              <span><i>01</i> Aluminium systems</span>
+              <span><i>02</i> Glass openings</span>
+              <span><i>03</i> Tailored fit</span>
             </motion.div>
           </div>
 
@@ -260,6 +270,11 @@ export default function Home() {
             <p>
               Every project begins with the dimensions, movement and finish the opening needs. The work follows from there, through fabrication to installation.
             </p>
+            <div className="process-band__sequence" aria-label="Technical Aluminium process">
+              <span><b>01</b> Understand the opening</span>
+              <span><b>02</b> Fabricate the system</span>
+              <span><b>03</b> Install with care</span>
+            </div>
             <a className="text-link text-link--light" href="tel:+263776826511">
               Discuss your project <ArrowUpRight size={17} />
             </a>
