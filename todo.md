@@ -2,4 +2,7 @@
 - [x] Strengthen the hero, section composition, and typographic hierarchy with more distinctive architectural editorial moments.
 - [x] Add richer material-detail treatments and interaction states without losing clarity or accessibility.
 - [x] Verify the refined desktop and mobile layouts.
-- [ ] Save a delivery checkpoint for the taste-led refinement.
+- [x] Save a delivery checkpoint for the taste-led refinement.
+- [x] Inspect the Vercel configuration and determine why source code is being served.
+- [x] Add static-hosting configuration that publishes the Vite frontend artifact.
+- [x] Validate the static build and prepare concise Vercel redeployment steps.
