@@ -6,3 +6,6 @@
 - [x] Inspect the Vercel configuration and determine why source code is being served.
 - [x] Add static-hosting configuration that publishes the Vite frontend artifact.
 - [x] Validate the static build and prepare concise Vercel redeployment steps.
+- [x] Review the current services-section reveals and establish a more architectural sequencing approach.
+- [x] Implement staged scroll-reveal motion, row-line drawing, and refined hover depth.
+- [x] Verify the updated reveal behaviour and save the completed refinement.

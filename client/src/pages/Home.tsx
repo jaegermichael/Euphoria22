@@ -15,7 +15,7 @@ import {
   ShieldCheck,
   X,
 } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
 
 const heroImage = "/manus-storage/technical-aluminium-hero_a2df2f4c.jpg";
@@ -66,6 +66,42 @@ const reveal = {
   transition: { duration: 0.72, ease: easeOut },
 };
 
+const serviceListReveal = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.12,
+      staggerChildren: 0.14,
+    },
+  },
+};
+
+const serviceRowReveal = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.64, ease: easeOut },
+  },
+};
+
+const serviceRuleReveal = {
+  hidden: { scaleX: 0 },
+  visible: {
+    scaleX: 1,
+    transition: { duration: 0.76, delay: 0.08, ease: easeOut },
+  },
+};
+
+const serviceSignalReveal = {
+  hidden: { scaleY: 0, opacity: 0 },
+  visible: {
+    scaleY: 1,
+    opacity: 1,
+    transition: { duration: 0.42, delay: 0.18, ease: easeOut },
+  },
+};
+
 function BrandMark({ className = "" }: { className?: string }) {
   return (
     <img
@@ -87,6 +123,7 @@ function SectionLabel({ children }: { children: string }) {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <div className="site-shell">
@@ -231,36 +268,54 @@ export default function Home() {
         </section>
 
         <section className="services" id="capabilities" aria-labelledby="services-title">
-          <motion.div {...reveal} className="services__intro">
+          <motion.div
+            className="services__intro"
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
+            transition={{ duration: 0.74, ease: easeOut }}
+            viewport={{ once: true, amount: 0.3 }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+          >
             <SectionLabel>Made for the opening</SectionLabel>
             <h2 id="services-title">
               Systems that hold their line.
             </h2>
             <span className="services__corner-tag">Profile 02 / edge set</span>
           </motion.div>
-          <motion.p {...reveal} className="services__summary">
+          <motion.p
+            className="services__summary"
+            initial={shouldReduceMotion ? false : { opacity: 0, x: 26 }}
+            transition={{ duration: 0.68, delay: 0.13, ease: easeOut }}
+            viewport={{ once: true, amount: 0.3 }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
+          >
             Technical Aluminium works across the practical details that make a finished opening feel considered: proportion, operation, framing and installation.
           </motion.p>
 
-          <div className="service-list">
-            {services.map((service, index) => (
+          <motion.div
+            className="service-list"
+            initial={shouldReduceMotion ? false : "hidden"}
+            transition={{ duration: 0.6, ease: easeOut }}
+            variants={serviceListReveal}
+            viewport={{ once: true, amount: 0.18 }}
+            whileInView={shouldReduceMotion ? undefined : "visible"}
+          >
+            {services.map((service) => (
               <motion.article
                 className="service-row"
-                initial={{ opacity: 0, y: 20 }}
                 key={service.id}
-                transition={{ duration: 0.56, delay: index * 0.08, ease: easeOut }}
-                viewport={{ once: true, amount: 0.24 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                variants={serviceRowReveal}
               >
+                <motion.span aria-hidden="true" className="service-row__signal" variants={serviceSignalReveal} />
                 <span className="service-row__id">{service.id}</span>
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
                 <a aria-label={`Discuss ${service.title.toLowerCase()}`} href="tel:+263776826511">
                   <MoveUpRight size={22} />
                 </a>
+                <motion.span aria-hidden="true" className="service-row__rule" variants={serviceRuleReveal} />
               </motion.article>
             ))}
-          </div>
+          </motion.div>
         </section>
 
         <section className="process-band" id="process" aria-labelledby="process-title">
