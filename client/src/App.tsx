@@ -3,17 +3,26 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
-import { ThemeProvider } from "./contexts/ThemeContext";
+import Layout from "./components/Layout";
+import Business from "./pages/Business";
+import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import Services from "./pages/Services";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 function Router() {
   return (
-    <Switch>
-      <Route component={Home} path="/" />
-      <Route component={NotFound} path="/404" />
-      <Route component={NotFound} />
-    </Switch>
+    <Layout>
+      <Switch>
+        <Route component={Home} path="/" />
+        <Route component={Services} path="/services" />
+        <Route component={Business} path="/business" />
+        <Route component={Contact} path="/contact" />
+        <Route component={NotFound} path="/404" />
+        <Route component={NotFound} />
+      </Switch>
+    </Layout>
   );
 }
 
