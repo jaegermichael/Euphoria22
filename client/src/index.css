@@ -13,6 +13,7 @@
   --muted: #5d5d5d;
   --line: rgba(17, 17, 17, 0.14);
   --shadow: rgba(17, 17, 17, 0.12);
+  --soft-shadow: 0 18px 36px rgba(17, 17, 17, 0.06);
 }
 
 html {
@@ -28,9 +29,10 @@ body {
   min-width: 320px;
   background: var(--paper);
   color: var(--black);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Segoe UI", Inter, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  font-weight: 500;
 }
 
 img {
@@ -73,11 +75,12 @@ button {
   padding: 12px 26px;
   z-index: 50;
   transition: box-shadow 180ms ease, top 180ms ease;
+  border-radius: 18px;
 }
 
 .site-header--scrolled {
   top: 10px;
-  box-shadow: 0 18px 36px var(--shadow);
+  box-shadow: var(--soft-shadow);
 }
 
 .brand-lockup {
@@ -104,8 +107,8 @@ button {
 .header-call,
 .eyebrow {
   font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -193,10 +196,10 @@ main,
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(3.4rem, 7vw, 7.4rem);
-  line-height: 0.9;
-  letter-spacing: -0.09em;
-  font-weight: 900;
+  font-size: clamp(2.9rem, 5.2vw, 5.8rem);
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+  font-weight: 700;
   color: var(--black);
 }
 
@@ -229,9 +232,10 @@ main,
   min-height: 52px;
   padding: 14px 22px;
   border: 1px solid var(--black);
+  border-radius: 999px;
   font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: transform 150ms ease, box-shadow 150ms ease;
 }
@@ -244,7 +248,7 @@ main,
   background: var(--red);
   border-color: var(--red);
   color: #fff;
-  box-shadow: 0 18px 30px rgba(215, 25, 32, 0.18);
+  box-shadow: 0 12px 24px rgba(215, 25, 32, 0.14);
 }
 
 .button--secondary {
@@ -264,12 +268,15 @@ main,
   background: rgba(255, 255, 255, 0.48);
   border: 1px solid var(--line);
   padding: 16px 18px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(17, 17, 17, 0.02);
 }
 
 .hero__stats strong {
   display: block;
   font-size: 1.15rem;
   margin-bottom: 6px;
+  font-weight: 700;
 }
 
 .hero__stats span {
@@ -285,7 +292,8 @@ main,
   min-height: 600px;
   border: 1px solid var(--line);
   background: #ded6cc;
-  box-shadow: 0 26px 70px rgba(17, 17, 17, 0.08);
+  box-shadow: var(--soft-shadow);
+  border-radius: 30px;
 }
 
 .hero__visual img {
@@ -306,6 +314,7 @@ main,
   background: rgba(17, 17, 17, 0.68);
   color: #fff;
   backdrop-filter: blur(8px);
+  border-radius: 18px;
 }
 
 .hero__badge span {
@@ -338,10 +347,10 @@ main,
 .process-copy h2,
 .contact-content h2 {
   margin: 0;
-  font-size: clamp(2.3rem, 4vw, 4rem);
-  line-height: 0.98;
-  letter-spacing: -0.07em;
-  font-weight: 900;
+  font-size: clamp(2.1rem, 3vw, 3.2rem);
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+  font-weight: 700;
 }
 
 .section-head--split {
@@ -372,10 +381,15 @@ main,
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.5);
   padding: 22px 18px 18px;
+  border-radius: 22px;
+  box-shadow: 0 8px 22px rgba(17, 17, 17, 0.02);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 }
 
 .service-card:hover {
   border-color: rgba(17, 17, 17, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 28px rgba(17, 17, 17, 0.06);
 }
 
 .service-card__number {
@@ -388,9 +402,10 @@ main,
 
 .service-card h3 {
   margin: 0;
-  font-size: clamp(1.5rem, 2vw, 2.2rem);
-  line-height: 1.02;
-  letter-spacing: -0.05em;
+  font-size: clamp(1.35rem, 1.8vw, 2rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  font-weight: 600;
 }
 
 .service-card p {
@@ -408,6 +423,7 @@ main,
   margin-top: auto;
   border: 1px solid var(--black);
   background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
 }
 
 .feature-band {
@@ -453,6 +469,7 @@ main,
   overflow: hidden;
   min-height: 520px;
   border: 1px solid var(--line);
+  border-radius: 30px;
 }
 
 .feature-band__image img {
@@ -476,6 +493,14 @@ main,
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.45);
   overflow: hidden;
+  border-radius: 24px;
+  box-shadow: 0 10px 24px rgba(17, 17, 17, 0.02);
+  transition: transform 170ms ease, box-shadow 170ms ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 28px rgba(17, 17, 17, 0.06);
 }
 
 .gallery-card img {
@@ -505,6 +530,7 @@ main,
   display: block;
   font-size: 1.12rem;
   letter-spacing: -0.03em;
+  font-weight: 600;
 }
 
 .process-section {
@@ -551,6 +577,7 @@ main,
   overflow: hidden;
   min-height: 500px;
   border: 1px solid var(--line);
+  border-radius: 30px;
 }
 
 .process-image img {
@@ -592,6 +619,7 @@ main,
   overflow: hidden;
   min-height: 520px;
   border: 1px solid var(--line);
+  border-radius: 30px;
 }
 
 .contact-visual img {
@@ -639,10 +667,11 @@ main,
   color: #fff;
   z-index: 40;
   box-shadow: 0 18px 36px rgba(17, 17, 17, 0.18);
+  border-radius: 999px;
   font-size: 0.7rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .whatsapp-float svg {
@@ -734,4 +763,3 @@ main,
     display: none;
   }
 }
-
