@@ -1,154 +1,62 @@
-/**
- * Anodised Standard style: industrial-editorial layout, graphite and alloy surfaces,
- * Signal Yellow as a precise action color, framed daylight, and measured motion.
- */
-import { Area, AreaChart } from "@/components/charts/area-chart";
-import { Grid } from "@/components/charts/grid";
-import {
-  ArrowDownRight,
-  ArrowUpRight,
-  ChevronDown,
-  Menu,
-  MessageCircle,
-  MoveUpRight,
-  Phone,
-  Ruler,
-  ShieldCheck,
-  X,
-} from "lucide-react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { ArrowRight, Menu, MessageCircle, Phone, ShieldCheck, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const heroImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/rXbYfGAYmkUeJKcF.jpg";
-const workshopImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/mvlKDcSIiPSiLqqb.jpg";
-const interiorImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/umVeqDPQhKymoars.jpg";
-const contactImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/htzAFaZiKowJNNSH.jpg";
-const logoImage = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663439519739/BlRLATmoFLRpytPT.png";
-
-const planningData = [
-  { date: "2026-01-05", rhythm: 18 },
-  { date: "2026-01-12", rhythm: 38 },
-  { date: "2026-01-19", rhythm: 32 },
-  { date: "2026-01-26", rhythm: 57 },
-  { date: "2026-02-02", rhythm: 46 },
-  { date: "2026-02-09", rhythm: 70 },
-  { date: "2026-02-16", rhythm: 61 },
+const navigation = [
+  ["Work", "#work"],
+  ["Services", "#services"],
+  ["Contact", "#contact"],
 ];
 
 const services = [
   {
-    id: "01",
-    title: "Windows",
-    text: "Framed for the way the room meets light, from clean fixed panes to practical opening configurations.",
+    title: "Aluminium Shopfronts",
+    text: "Bold street-facing glazing that feels premium, secure and welcoming from the first glance.",
   },
   {
-    id: "02",
-    title: "Doors",
-    text: "Sliding, hinged and entrance systems with a clear visual line and a robust everyday finish.",
+    title: "Sliding & Hinged Doors",
+    text: "Practical opening systems with a clean finish, smooth operation and modern visual rhythm.",
   },
   {
-    id: "03",
-    title: "Architectural work",
-    text: "Made-to-fit aluminium solutions for the openings that give a building its character.",
+    title: "Window Installations",
+    text: "Custom windows for homes and commercial spaces, chosen around light, ventilation and layout.",
+  },
+  {
+    title: "Security Grilles",
+    text: "Built to protect without compromising the architectural look of the frame or facade.",
   },
 ];
 
-const navigation = [
-  ["Work", "#work"],
-  ["Capabilities", "#capabilities"],
-  ["Process", "#process"],
+const projectCards = [
+  {
+    title: "Residential glazing upgrade",
+    detail: "Modern frames, brighter living spaces",
+    image: "/image2.jpeg",
+  },
+  {
+    title: "Commercial frontage",
+    detail: "Welcoming entry with a strong identity",
+    image: "/image4.jpeg",
+  },
+  {
+    title: "Custom aluminium doors",
+    detail: "Premium finishes and smooth functionality",
+    image: "/image5.jpeg",
+  },
 ];
 
-const easeOut: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
-const reveal = {
-  initial: { opacity: 0, y: 26 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.22 },
-  transition: { duration: 0.72, ease: easeOut },
-};
-
-const serviceListReveal = {
-  hidden: {},
-  visible: {
-    transition: {
-      delayChildren: 0.12,
-      staggerChildren: 0.14,
-    },
-  },
-};
-
-const serviceRowReveal = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.64, ease: easeOut },
-  },
-};
-
-const serviceRuleReveal = {
-  hidden: { scaleX: 0 },
-  visible: {
-    scaleX: 1,
-    transition: { duration: 0.76, delay: 0.08, ease: easeOut },
-  },
-};
-
-const serviceSignalReveal = {
-  hidden: { scaleY: 0, opacity: 0 },
-  visible: {
-    scaleY: 1,
-    opacity: 1,
-    transition: { duration: 0.42, delay: 0.18, ease: easeOut },
-  },
-};
-
-const processSequenceReveal = {
-  hidden: {},
-  visible: {
-    transition: { delayChildren: 0.28, staggerChildren: 0.13 },
-  },
-};
-
-const processStepReveal = {
-  hidden: { opacity: 0, x: -14 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.5, ease: easeOut },
-  },
-};
-
-function BrandMark({ className = "" }: { className?: string }) {
-  return (
-    <img
-      alt="Technical Aluminium mitred-corner mark"
-      className={`brand-mark ${className}`}
-      src={logoImage}
-    />
-  );
-}
-
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <div className="section-label">
-      <span className="section-label__line" />
-      <span>{children}</span>
-    </div>
-  );
-}
+const features = [
+  "Quality fabrication and installation",
+  "Custom sizing for every opening",
+  "Durable finishes built for local conditions",
+  "Fast response and honest guidance",
+];
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll();
-  const heroImageDrift = useTransform(scrollYProgress, [0, 0.24], [0, 58]);
-  const heroImageScale = useTransform(scrollYProgress, [0, 0.24], [1, 1.055]);
 
   useEffect(() => {
-    const updateScrollState = () => setHasScrolled(window.scrollY > 24);
+    const updateScrollState = () => setHasScrolled(window.scrollY > 20);
     updateScrollState();
     window.addEventListener("scroll", updateScrollState, { passive: true });
     return () => window.removeEventListener("scroll", updateScrollState);
@@ -157,12 +65,8 @@ export default function Home() {
   return (
     <div className="site-shell">
       <header className={`site-header${hasScrolled ? " site-header--scrolled" : ""}`}>
-        <a className="brand-lockup" href="#top" aria-label="Technical Aluminium home">
-          <BrandMark />
-          <span>
-            <strong>Technical</strong>
-            <em>Aluminium</em>
-          </span>
+        <a className="brand-lockup" href="#top" aria-label="Euphoria Holdings home">
+          <img alt="Euphoria Holdings logo" className="brand-logo" src="/logo.jpeg" />
         </a>
 
         <nav className="desktop-nav" aria-label="Main navigation">
@@ -173,9 +77,9 @@ export default function Home() {
           ))}
         </nav>
 
-        <a className="header-call" href="tel:+263776826511">
+        <a className="header-call" href="tel:+2637756628812">
           <Phone size={15} strokeWidth={2.2} />
-          <span>+263 77 682 6511</span>
+          <span>+263 77 566 28812</span>
         </a>
 
         <button
@@ -190,332 +94,200 @@ export default function Home() {
       </header>
 
       {menuOpen ? (
-        <motion.nav
-          animate={{ opacity: 1, y: 0 }}
-          aria-label="Mobile navigation"
-          className="mobile-nav"
-          initial={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.22, ease: easeOut }}
-        >
+        <nav aria-label="Mobile navigation" className="mobile-nav">
           {navigation.map(([label, href]) => (
             <a href={href} key={label} onClick={() => setMenuOpen(false)}>
               {label}
-              <ArrowUpRight size={17} />
+              <ArrowRight size={17} />
             </a>
           ))}
-          <a href="tel:+263776826511" onClick={() => setMenuOpen(false)}>
-            Call Technical Aluminium
+          <a href="tel:+2637756628812" onClick={() => setMenuOpen(false)}>
+            Call us
             <Phone size={17} />
           </a>
-        </motion.nav>
+        </nav>
       ) : null}
 
       <main id="top">
-        <section className="hero" aria-labelledby="hero-title">
-          <div className="hero__rail" aria-hidden="true">
-            <span className="hero__rail-number">01</span>
-            <span className="hero__rail-rule" />
-            <span className="hero__rail-text">Architectural aluminium</span>
-          </div>
-
+        <section className="hero">
           <div className="hero__content">
-            <motion.p
-              animate={{ opacity: 1, y: 0 }}
-              className="hero__eyebrow"
-              initial={{ opacity: 0, y: 16 }}
-              transition={{ duration: 0.58, delay: 0.1, ease: easeOut }}
-              >
-              Fabrication notes / Zimbabwe
-            </motion.p>
-            <motion.h1
-              animate={{ opacity: 1, y: 0 }}
-              id="hero-title"
-              initial={{ opacity: 0, y: 42 }}
-              transition={{ duration: 0.78, delay: 0.16, ease: easeOut }}
-            >
-              Light enters
-              <span>by design.</span>
-            </motion.h1>
-            <motion.p
-              animate={{ opacity: 1, y: 0 }}
-              className="hero__lede"
-              initial={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.62, delay: 0.28, ease: easeOut }}
-            >
-              Purpose-built aluminium windows, doors and architectural systems,
-              fabricated for a clean finish that lasts.
-            </motion.p>
-            <motion.div
-              animate={{ opacity: 1, y: 0 }}
-              className="hero__actions"
-              initial={{ opacity: 0, y: 16 }}
-              transition={{ duration: 0.54, delay: 0.38, ease: easeOut }}
-            >
-              <a className="button button--signal" href="tel:+263776826511">
-                Start a conversation <ArrowUpRight size={18} />
+            <p className="eyebrow">Euphoria Holdings</p>
+            <h1>
+              Aluminium shopfronts
+              <span>for homes and businesses.</span>
+            </h1>
+            <p className="hero__lede">
+              We design and install aluminium windows, doors, shopfronts and security glazing that look sharp,
+              perform reliably and finish beautifully.
+            </p>
+
+            <div className="hero__actions">
+              <a className="button button--primary" href="tel:+2637756628812">
+                Book a quote <Phone size={16} />
               </a>
-              <a className="text-link" href="#work">
-                See the work <ArrowDownRight size={17} />
+              <a className="button button--secondary" href="#work">
+                View our work
               </a>
-            </motion.div>
-            <motion.div
-              animate={{ opacity: 1, y: 0 }}
-              className="hero__material-index"
-              initial={{ opacity: 0, y: 14 }}
-              transition={{ duration: 0.54, delay: 0.5, ease: easeOut }}
-            >
-              <span><i>01</i> Aluminium systems</span>
-              <span><i>02</i> Glass openings</span>
-              <span><i>03</i> Tailored fit</span>
-            </motion.div>
+            </div>
+
+            <div className="hero__stats">
+              <div>
+                <strong>Premium</strong>
+                <span>finishes</span>
+              </div>
+              <div>
+                <strong>Custom</strong>
+                <span>fabrication</span>
+              </div>
+              <div>
+                <strong>Local</strong>
+                <span>support</span>
+              </div>
+            </div>
           </div>
 
-          <motion.div
-            animate={{ clipPath: "inset(0 0 0 0)" }}
-            className="hero__aperture"
-            initial={{ clipPath: "inset(0 0 100% 0)" }}
-            transition={{ duration: 1.2, delay: 0.08, ease: [0.77, 0, 0.175, 1] as [number, number, number, number] }}
-          >
-            <motion.img
-              alt="Contemporary facade with black anodised aluminium doors and windows"
-              src={heroImage}
-              style={shouldReduceMotion ? undefined : { scale: heroImageScale, y: heroImageDrift }}
-            />
-            <div className="hero__aperture-gradient" />
-            <div className="hero__dimension hero__dimension--vertical">2400 mm / custom opening</div>
-            <div className="hero__corner hero__corner--top" aria-hidden="true" />
-            <div className="hero__corner hero__corner--bottom" aria-hidden="true" />
-            <div className="hero__image-note">
-              <span>Framed daylight</span>
-              <span>01.01</span>
+          <div className="hero__visual">
+            <img alt="Aluminium window and door installation" src="/image1.jpeg" />
+            <div className="hero__badge">
+              <span>Aluminium shopfitters</span>
+              <strong>Built around light, security and style.</strong>
             </div>
-          </motion.div>
-
-          <div className="hero__bottom-note">
-            <ShieldCheck size={16} />
-            <span>Built around the opening, not around a template.</span>
           </div>
         </section>
 
-        <section className="services" id="capabilities" aria-labelledby="services-title">
-          <motion.div
-            className="services__intro"
-            initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
-            transition={{ duration: 0.74, ease: easeOut }}
-            viewport={{ once: true, amount: 0.3 }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-          >
-            <SectionLabel>Made for the opening</SectionLabel>
-            <h2 id="services-title">
-              Systems that hold their line.
-            </h2>
-            <span className="services__corner-tag">Profile 02 / edge set</span>
-          </motion.div>
-          <motion.p
-            className="services__summary"
-            initial={shouldReduceMotion ? false : { opacity: 0, x: 26 }}
-            transition={{ duration: 0.68, delay: 0.13, ease: easeOut }}
-            viewport={{ once: true, amount: 0.3 }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
-          >
-            Technical Aluminium works across the practical details that make a finished opening feel considered: proportion, operation, framing and installation.
-          </motion.p>
+        <section className="services-section" id="services">
+          <div className="section-head">
+            <p className="eyebrow eyebrow--dark">What we do</p>
+            <h2>Strong frames. Clean lines. Everyday performance.</h2>
+          </div>
 
-          <motion.div
-            className="service-list"
-            initial={shouldReduceMotion ? false : "hidden"}
-            transition={{ duration: 0.6, ease: easeOut }}
-            variants={serviceListReveal}
-            viewport={{ once: true, amount: 0.18 }}
-            whileInView={shouldReduceMotion ? undefined : "visible"}
-          >
+          <div className="service-grid">
             {services.map((service) => (
-              <motion.article
-                className="service-row"
-                key={service.id}
-                variants={serviceRowReveal}
-              >
-                <motion.span aria-hidden="true" className="service-row__signal" variants={serviceSignalReveal} />
-                <span className="service-row__id">{service.id}</span>
+              <article className="service-card" key={service.title}>
+                <span className="service-card__number">01</span>
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
-                <a aria-label={`Discuss ${service.title.toLowerCase()}`} href="tel:+263776826511">
-                  <MoveUpRight size={22} />
-                </a>
-                <motion.span aria-hidden="true" className="service-row__rule" variants={serviceRuleReveal} />
-              </motion.article>
+                <div className="service-card__link">
+                  <ArrowRight size={16} />
+                </div>
+              </article>
             ))}
-          </motion.div>
-        </section>
-
-        <section className="process-band" id="process" aria-labelledby="process-title">
-          <motion.div {...reveal} className="process-band__content">
-            <SectionLabel>How we work</SectionLabel>
-            <h2 id="process-title">Bring your drawing.<br />We will build the frame.</h2>
-            <p>
-              Every project begins with the dimensions, movement and finish the opening needs. The work follows from there, through fabrication to installation.
-            </p>
-            <motion.div
-              aria-label="Technical Aluminium process"
-              className="process-band__sequence"
-              initial={shouldReduceMotion ? false : "hidden"}
-              variants={processSequenceReveal}
-              viewport={{ once: true, amount: 0.45 }}
-              whileInView={shouldReduceMotion ? undefined : "visible"}
-            >
-              <motion.span variants={processStepReveal}><b>01</b> Understand the opening</motion.span>
-              <motion.span variants={processStepReveal}><b>02</b> Fabricate the system</motion.span>
-              <motion.span variants={processStepReveal}><b>03</b> Install with care</motion.span>
-            </motion.div>
-            <a className="text-link text-link--light" href="tel:+263776826511">
-              Discuss your project <ArrowUpRight size={17} />
-            </a>
-          </motion.div>
-          <motion.div
-            {...reveal}
-            className="process-band__image-wrap"
-            whileHover={shouldReduceMotion ? undefined : { scale: 1.012 }}
-          >
-            <div className="process-band__frame" aria-hidden="true" />
-            <img
-              alt="Careful alignment of an aluminium frame during fabrication"
-              className="process-band__image"
-              src={workshopImage}
-            />
-            <div className="process-band__tag">
-              <Ruler size={15} />
-              <span>Measure / make / fit</span>
-            </div>
-          </motion.div>
-        </section>
-
-        <section className="gallery" id="work" aria-labelledby="work-title">
-          <motion.div {...reveal} className="gallery__heading">
-            <div>
-              <SectionLabel>In context</SectionLabel>
-              <h2 id="work-title">The finish is part of the architecture.</h2>
-            </div>
-            <p>Clear sightlines, strong framing and rooms that stay connected to the outdoors.</p>
-          </motion.div>
-
-          <div className="gallery__composition">
-            <motion.figure
-              className="gallery__primary"
-              initial={{ opacity: 0, y: 34 }}
-              transition={{ duration: 0.76, ease: easeOut }}
-              viewport={{ once: true, amount: 0.2 }}
-              whileHover={shouldReduceMotion ? undefined : { y: -5 }}
-              whileInView={{ opacity: 1, y: 0 }}
-            >
-              <img alt="Interior with tall aluminium-framed pivot door and glazing" src={interiorImage} />
-              <span className="gallery__profile-note">Extruded frame / daylight edge</span>
-              <figcaption>
-                <span>01 / Interior opening</span>
-                <span>Open, framed, resolved</span>
-              </figcaption>
-            </motion.figure>
-            <motion.div {...reveal} className="gallery__annotation">
-              <span className="gallery__annotation-mark" />
-              <p>Aluminium is strongest when it disappears into the plan, leaving light, proportion and a clean edge.</p>
-              <a className="text-link" href="tel:+263776826511">
-                Talk to the team <ArrowUpRight size={17} />
-              </a>
-            </motion.div>
           </div>
         </section>
 
-        <section className="planning" aria-labelledby="planning-title">
-          <motion.div {...reveal} className="planning__copy">
-            <SectionLabel>Production rhythm</SectionLabel>
-            <h2 id="planning-title">Clear planning, from first measure to final fit.</h2>
+        <section className="feature-band" id="work">
+          <div className="feature-band__copy">
+            <p className="eyebrow eyebrow--dark">Our approach</p>
+            <h2>Made to fit your property, your plans and your lifestyle.</h2>
             <p>
-              The exact sequence depends on the scope, opening sizes and finish. We start by understanding your project, then shape the work around it.
+              From residential upgrades to commercial frontage, every installation is shaped around proportion,
+              durability and the way the space feels in use.
             </p>
-            <div className="planning__legend">
-              <span><i /> Fabrication cadence</span>
-              <span>Illustrative workflow notation</span>
-            </div>
-          </motion.div>
-          <motion.figure {...reveal} className="planning__chart-shell">
-            <div className="chart-corners" aria-hidden="true" />
-            <AreaChart
-              animationDuration={1150}
-              aspectRatio="1.76 / 1"
-              className="planning__chart"
-              data={planningData}
-              margin={{ top: 22, right: 20, bottom: 18, left: 16 }}
-              revealSignature="technical-aluminium-production-rhythm"
-              xDataKey="date"
-            >
-              <Grid
-                hideHorizontalEdgeLines
-                numTicksRows={4}
-                stroke="rgba(242, 241, 236, 0.18)"
-                strokeDasharray="1,6"
-                vertical={false}
-              />
-              <Area
-                dataKey="rhythm"
-                fadeEdges
-                fill="#F3B817"
-                fillOpacity={0.48}
-                gradientSpan={0.88}
-                gradientToOpacity={0.03}
-                showHighlight={false}
-                showLine
-                stroke="#F7D76B"
-                strokeWidth={2.25}
-              />
-            </AreaChart>
-            <figcaption>
-              <span>Initial scope</span>
-              <span>Fabrication</span>
-              <span>Installation</span>
-            </figcaption>
-          </motion.figure>
+            <ul>
+              {features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="feature-band__image">
+            <img alt="Curtain-style aluminium windows on a modern home exterior" src="/image3.jpeg" />
+          </div>
         </section>
 
-        <section className="contact" aria-labelledby="contact-title">
-          <motion.div {...reveal} className="contact__inner">
-            <div className="contact__mark-wrap"><BrandMark /></div>
-            <SectionLabel>Start with the opening</SectionLabel>
-            <h2 id="contact-title">Let’s make the<br /><span>right first impression.</span></h2>
-            <p>Call Technical Aluminium to discuss windows, doors or a tailored architectural aluminium requirement.</p>
-            <div className="contact__actions">
-              <a className="button button--signal" href="tel:+263776826511">
-                Call +263 77 682 6511 <Phone size={17} />
+        <section className="gallery-section">
+          <div className="section-head section-head--split">
+            <div>
+              <p className="eyebrow eyebrow--dark">Recent work</p>
+              <h2>Elegant openings that leave a lasting impression.</h2>
+            </div>
+            <p>Finished to suit modern homes, offices and retail spaces alike.</p>
+          </div>
+
+          <div className="gallery-grid">
+            {projectCards.map((project) => (
+              <figure className="gallery-card" key={project.title}>
+                <img alt={project.title} src={project.image} />
+                <figcaption>
+                  <div>
+                    <span>{project.title}</span>
+                    <strong>{project.detail}</strong>
+                  </div>
+                  <ArrowRight size={18} />
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        <section className="process-section">
+          <div className="process-copy">
+            <p className="eyebrow eyebrow--dark">Why choose us</p>
+            <h2>Craftsmanship that makes the details feel considered.</h2>
+            <p>
+              We keep the process clear from the first conversation to final installation, with practical advice and
+              honest recommendations every step of the way.
+            </p>
+            <div className="process-list">
+              <div>
+                <strong>01</strong>
+                <span>Measure and advise</span>
+              </div>
+              <div>
+                <strong>02</strong>
+                <span>Fabricate to spec</span>
+              </div>
+              <div>
+                <strong>03</strong>
+                <span>Install with care</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="process-image">
+            <img alt="Aluminium frame installation on a property" src="/image5.jpeg" />
+          </div>
+        </section>
+
+        <section className="contact-section" id="contact">
+          <div className="contact-content">
+            <p className="eyebrow">Let’s talk</p>
+            <h2>Ready to improve your windows, doors or frontage?</h2>
+            <p>
+              Speak to the Euphoria Holdings team about the right aluminium system for your building and budget.
+            </p>
+
+            <div className="contact-actions">
+              <a className="button button--primary" href="tel:+2637756628812">
+                Call +263 77 566 28812 <Phone size={16} />
               </a>
-              <a className="text-link text-link--light" href="https://wa.me/263776826511">
-                Send a WhatsApp <ArrowUpRight size={17} />
+              <a className="button button--secondary" href="tel:+263784566522">
+                Call +263 78 456 6522
               </a>
             </div>
-          </motion.div>
-          <motion.figure
-            {...reveal}
-            className="contact__image"
-            whileHover={shouldReduceMotion ? undefined : { y: -5 }}
-          >
-            <img src={contactImage} alt="Black aluminium-framed doorway" />
-            <figcaption><span>Framed entry</span><span>01.06</span></figcaption>
-          </motion.figure>
+
+            <div className="contact-trust">
+              <ShieldCheck size={18} />
+              <span>Professional advice. Solid installation. Thoughtful finishes.</span>
+            </div>
+          </div>
+
+          <div className="contact-visual">
+            <img alt="Large aluminium security door installation" src="/image4.jpeg" />
+          </div>
         </section>
       </main>
 
       <footer className="site-footer">
-        <a className="brand-lockup brand-lockup--footer" href="#top">
-          <BrandMark />
-          <span><strong>Technical</strong><em>Aluminium</em></span>
+        <a className="footer-brand" href="#top" aria-label="Euphoria Holdings home">
+          <img alt="Euphoria Holdings logo" src="/logo.jpeg" />
         </a>
-        <p>Architectural aluminium fabrication & installation.</p>
-        <a href="tel:+263776826511">+263 77 682 6511</a>
+        <p>Aluminium shopfitters</p>
+        <a href="tel:+2637756628812">+263 77 566 28812</a>
       </footer>
 
-      <a
-        className="whatsapp-float"
-        href="https://wa.me/263776826511"
-        aria-label="Message Technical Aluminium on WhatsApp at +263 77 682 6511"
-      >
-        <MessageCircle size={21} aria-hidden="true" />
+      <a className="whatsapp-float" href="https://wa.me/2637756628812" aria-label="WhatsApp Euphoria Holdings">
+        <MessageCircle size={20} />
         <span>WhatsApp</span>
       </a>
     </div>
