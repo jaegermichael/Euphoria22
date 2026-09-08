@@ -176,14 +176,15 @@ button {
 
 .hero__content {
   position: relative;
-  max-width: 1440px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 140px clamp(20px, 4vw, 56px) 200px;
+  padding: 140px clamp(80px, 12vw, 200px) 200px clamp(20px, 4vw, 56px);
 }
 
 .hero h1 {
   margin: 0;
+  max-width: 14ch;
   font-size: clamp(2.6rem, 5.4vw, 4.9rem);
   font-weight: 300;
   line-height: 1.06;
@@ -221,23 +222,23 @@ button {
 
 .hero__pager {
   position: absolute;
-  right: clamp(24px, 6vw, 120px);
-  bottom: 220px;
+  right: clamp(32px, 7vw, 140px);
+  bottom: 260px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
 }
 
 .hero__pager strong {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: 700;
 }
 
 .hero__pager-ring {
-  width: 46px;
-  height: 46px;
-  border: 8px solid var(--orange);
+  width: 40px;
+  height: 40px;
+  border: 7px solid var(--orange);
   border-radius: 50%;
 }
 
@@ -835,6 +836,10 @@ button {
 
   .hero {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 94%);
+  }
+
+  .hero__content {
+    padding-right: clamp(20px, 4vw, 56px);
   }
 
   .hero__pager {
